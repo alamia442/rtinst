@@ -664,7 +664,7 @@ fi
 
 sed -i "/^\(\s\|#\)*Port / c\Port $sshport" /etc/ssh/sshd_config
 sed -i "/^\(\s\|#\)*X11Forwarding /c\X11Forwarding no" /etc/ssh/sshd_config
-sed -i '/^\s*PermitRootLogin/ c\PermitRootLogin no' /etc/ssh/sshd_config
+#sed -i '/^\s*PermitRootLogin/ c\PermitRootLogin no' /etc/ssh/sshd_config
 sed -i '/^\s*PasswordAuthentication no/ c\#PasswordAuthentication no' /etc/ssh/sshd_config
 
 echo >> /etc/ssh/sshd_config
@@ -685,7 +685,7 @@ if ! [ -z "$allowlist" ]; then
     done
   sed -i "/$allowlist/ d" /etc/ssh/sshd_config
 fi
-grep "AllowGroups sudo sshuser" /etc/ssh/sshd_config > /dev/null || echo "AllowGroups sudo sshuser" >> /etc/ssh/sshd_config
+#grep "AllowGroups sudo sshuser" /etc/ssh/sshd_config > /dev/null || echo "AllowGroups sudo sshuser" >> /etc/ssh/sshd_config
 
 service ssh restart 1>> $logfile
 sshport=$(grep 'Port ' /etc/ssh/sshd_config | sed 's/[^0-9]*//g')
